@@ -6,13 +6,15 @@ function water = water_properties
 %    Requires:
 %        water_data.mat
 %
-%    Units:
-%        Temperature ........... C
-%        Kinematic Viscosity ... m^2/s
-%        Density ............... kg/m^3
-%        Bulk Modulus .......... Pa
+%    Water properties:
+%        Density [kg/m^3]
+%        Kinematic Viscosity [m^2/s]
+%        Bulk Modulus [Pa]
 %
-%    Example:
+%    Independent variable:
+%        Temperature [C]
+%
+%    Examples:
 %        water = water_properties;
 %        % Compute water properties for a single temperature value
 %        water.nu(27)
@@ -20,7 +22,7 @@ function water = water_properties
 %        water.K(27)
 %        % Create a short alias
 %        nu = water.nu;
-%        % Compute water properties for multiple temperature values
+%        % Compute and plot the viscosity for multiple temperature values
 %        t = 10:80;
 %        plot(t,nu(t),'*')
 %
@@ -41,20 +43,20 @@ end
 % Temperature (C)
 temperature = x.temperature;
 
-% Kinematic Viscosity, nu (m^2/s)
-viscosity = x.viscosity;
-
 % Density, rho (kg/m^3)
 density = x.density;
+
+% Kinematic Viscosity, nu (m^2/s)
+viscosity = x.viscosity;
 
 % Bulk Modulus, K (Pa)
 bulk_modulus = x.bulk_modulus;
 
-% Function handle for viscosity
-water.nu = @(t) interp1(temperature,viscosity,t);
-
 % Function handle for density
-water.rho = @(t) interp1(temperature,density,t);
+water.rho = @(t) interp1(temperature,density,t,'spline');
+
+% Function handle for viscosity
+water.nu = @(t) interp1(temperature,viscosity,t,'spline');
 
 % Function handle for bulk modulus
-water.K = @(t) interp1(temperature,bulk_modulus,t);
+water.K = @(t) interp1(temperature,bulk_modulus,t,'spline');
