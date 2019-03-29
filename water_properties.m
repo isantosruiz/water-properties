@@ -22,7 +22,7 @@ function water = water_properties
 %        water.K(27)
 %        % Create a short alias
 %        nu = water.nu;
-%        % Compute and plot the viscosity for multiple temperature values
+%        % Plot viscosity for multiple temperature values
 %        t = 10:80;
 %        plot(t,nu(t),'*')
 %
