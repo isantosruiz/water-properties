@@ -3,9 +3,6 @@ function water = water_properties
 % WATER_PROPERTIES Returns function handles to compute physical properties
 %    of water dependent on temperature, from 0.1 to 100 celsius.
 %
-%    Requires:
-%        water_data.mat
-%
 %    Water properties:
 %        Density [kg/m^3]
 %        Kinematic Viscosity [m^2/s]
@@ -25,6 +22,9 @@ function water = water_properties
 %        % Plot viscosity for multiple temperature values
 %        t = 10:80;
 %        plot(t,nu(t),'*')
+%
+%    Requires:
+%        water_data.mat
 %
 %    Author:
 %        Ildeberto de los Santos Ruiz
